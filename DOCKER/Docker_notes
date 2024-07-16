@@ -339,3 +339,42 @@ Agenda:
                    -  /var/lib/docker/image/overlay2/imagedb/content/sha256 --> This path is applicable on UBUNTU OS only
                    
 2.) Containers live in /var/lib/docker/containers
+
+
+DAY-5:
+PROJECT-1:
+============
+# Building our own Image
+	We have 2 Ways to create docker image:
+		1. docker "commit" (depricited)
+		2. docker "build" cmd & Dockerfile
+
+
+
+# 1.) First Approach 
+====================  (This approach is depricitd)
+Problem:- Creating docker image using "docker commit" command
+
+	Ship an application with ubuntu, nginx web server and code to your customer.
+
+
+	- create container
+		$ sudo docker run --name <image-container-name> -it ubuntu /bin/bash
+	
+	- Install nginx manually
+		# sudo apt-get install -y nginx
+	
+	- create a docker image from the container OR convert docker container as 	
+	  docker image
+		$ docker commit <container-name> "<docker-hub-username>/nginx-image"
+	
+	- check if image has been created
+	  $ docker images
+
+	- push the newly created image to docker hub
+		$ docker login
+		$ docker push swapnilhub/nginx-image
+
+
+	- Customers can spin(create) millions of new containers using below command. means we can create new container with image.
+		$ docker run -it swapnilhub/nginx-img /bin/bash
